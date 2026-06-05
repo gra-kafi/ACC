@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DVAL Poster</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --blue: #1a3a6b;
+    --accent: #e8a020;
+    --accent2: #3b82f6;
+    --light: #f0f4fc;
+    --white: #ffffff;
+    --gray: #94a3b8;
+    --text: #1e293b;
+    --border: #cbd5e1;
+    --green: #16a34a;
+    --red: #dc2626;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #e8ecf4;
+    font-family: 'Bebas Neue', sans-serif;
+    color: var(--text);
+    padding: 20px;
+  }
+
+  .poster {
+    width: 1200px;
+    margin: 0 auto;
+    background: var(--white);
+    box-shadow: 0 8px 60px rgba(0,0,0,0.25);
+    overflow: hidden;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--navy);
+    padding: 28px 40px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(59,130,246,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 50%, var(--accent) 100%);
+  }
+
+  .header-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 14px;
+  }
+
+  .uiu-badge {
+    flex-shrink: 0;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 8px 14px;
+    text-align: center;
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 1.5;
+  }
+  .uiu-badge span { display: block; font-size: 18px; font-weight: 900; letter-spacing: 2px; color: var(--accent); }
+
+  .title-block { flex: 1; }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  h1 em { color: var(--accent); font-style: normal; }
+
+  .subtitle {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    font-weight: 300;
+    letter-spacing: 0.5px;
+  }
+
+  .authors {
+    font-size: 12px;
+    color: rgba(255,255,255,0.8);
+    font-weight: 400;
+  }
+  .dept {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 3px;
+  }
+  .conf-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--navy);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  /* MAIN GRID */
+  .body {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+  }
+
+  .col {
+    padding: 20px;
+    border-right: 1px solid var(--border);
+  }
+  .col:last-child { border-right: none; }
+
+  /* SECTION TITLES */
+  .sec-title {
+    font-family: 'Bebas Neue', sans-serif;  
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sec-title .num {
+    background: var(--navy);
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  p { font-size: 11.5px; line-height: 1.7; color: #334155; }
+  p + p { margin-top: 8px; }
+
+  /* VISION COMPARISON */
+  .vision-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 12px 0;
+  }
+  .vision-box {
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .vision-label {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 4px 8px;
+    text-align: center;
+  }
+  .vision-label.normal { background: #dcfce7; color: #15803d; }
+  .vision-label.cvd { background: #fef2f2; color: #b91c1c; }
+
+  /* SVG colour swatch simulation */
+  .color-swatch {
+    width: 100%;
+    height: 55px;
+    display: flex;
+  }
+  .swatch { flex: 1; }
+
+  /* ISHIHARA PLATES */
+  .ishihara-row {
+    display: flex;
+    gap: 8px;
+    margin: 10px 0;
+    justify-content: center;
+  }
+  .plate {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  /* STATS ROW */
+  .stats-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin: 10px 0;
+  }
+  .stat-box {
+    background: var(--light);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px;
+    text-align: center;
+  
+  }
+  .stat-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--blue);
+    display: block;
+  }
+  .stat-lbl { font-size: 10px; color: var(--gray); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* METHODOLOGY STEPS */
+  .method-step {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+    align-items: flex-start;
+  }
+  .step-num {
+    background: var(--navy);
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 13px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-content {}
+  .step-title { font-size: 12px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
+  .step-desc { font-size: 11px; color: #475569; line-height: 1.6; }
+
+  /* PIPELINE DIAGRAM */
+  .pipeline {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 12px 0;
+    flex-wrap: wrap;
+  }
+  .pipe-box {
+    background: var(--navy);
+    color: var(--white);
+    font-size: 9.5px;
+    font-weight: 600;
+    padding: 7px 9px;
+    border-radius: 5px;
+    text-align: center;
+    flex: 1;
+    min-width: 70px;
+    line-height: 1.3;
+  }
+  .pipe-box.accent { background: var(--accent); color: var(--navy); }
+  .pipe-box.blue { background: var(--accent2); color: var(--white); }
+  .pipe-arrow {
+    color: var(--gray);
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* DFD DIAGRAM */
+  .dfd {
+    margin: 10px 0;
+    padding: 12px;
+    background: var(--light);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  .dfd-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+  .dfd-node {
+    font-size: 9.5px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .dfd-node.user { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
+  .dfd-node.process { background: var(--navy); color: var(--white); }
+  .dfd-node.store { background: #fef9c3; color: #854d0e; border: 1px solid #fde047; }
+  .dfd-node.output { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+  .dfd-arrow { font-size: 12px; color: var(--gray); }
+
+  /* GAP TABLE */
+  .gap-table { width: 100%; border-collapse: collapse; font-size: 10.5px; margin: 10px 0; }
+  .gap-table thead tr { background: var(--navy); color: var(--white); }
+  .gap-table th { padding: 7px 8px; text-align: left; font-weight: 600; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .gap-table td { padding: 6px 8px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+  .gap-table tr:nth-child(even) td { background: #f8fafc; }
+  .gap-table tr:last-child td { border-bottom: none; }
+
+  .badge {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .badge.open { background: #fef2f2; color: #b91c1c; border: 1px solid #fca5a5; }
+  .badge.partial { background: #fef9c3; color: #854d0e; border: 1px solid #fde047; }
+  .badge.closed { background: #dcfce7; color: #15803d; border: 1px solid #86efac; }
+  .badge.primary { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
+
+  /* RESULTS TABLE */
+  .results-table { width: 100%; border-collapse: collapse; font-size: 11px; margin: 10px 0; }
+  .results-table thead tr { background: var(--navy); color: var(--white); }
+  .results-table th { padding: 7px 10px; text-align: left; font-weight: 600; }
+  .results-table td { padding: 6px 10px; border-bottom: 1px solid var(--border); }
+  .results-table tr.highlight td { background: #fffbeb; font-weight: 700; }
+  .results-table tr.highlight td:first-child { border-left: 3px solid var(--accent); }
+  .results-table tr:last-child td { border-bottom: none; }
+
+  /* HIGHLIGHT BOX */
+  .highlight-box {
+    background: linear-gradient(135deg, #0a1628, #1a3a6b);
+    color: var(--white);
+    border-radius: 8px;
+    padding: 14px;
+    margin: 10px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .highlight-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent);
+  }
+  .highlight-box p { color: rgba(255,255,255,0.85); font-size: 11px; }
+
+  /* CONCLUSION */
+  .conclusion-points { list-style: none; padding: 0; margin: 10px 0; }
+  .conclusion-points li {
+    font-size: 11.5px;
+    padding: 7px 0 7px 20px;
+    border-bottom: 1px dashed var(--border);
+    position: relative;
+    line-height: 1.6;
+    color: #334155;
+  }
+  .conclusion-points li::before {
+    content: '▶';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 9px;
+    top: 10px;
+  }
+  .conclusion-points li:last-child { border-bottom: none; }
+
+  /* FOOTER */
+  .footer {
+    background: var(--navy);
+    padding: 12px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 3px solid var(--accent);
+  }
+  .footer-left { font-size: 10px; color: rgba(255,255,255,0.5); }
+  .footer-mid {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+  }
+  .footer-keywords {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .keyword {
+    font-size: 9px;
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.7);
+    padding: 2px 7px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  /* SPAN COLUMNS */
+  .span-full {
+    grid-column: 1 / -1;
+    border-right: none;
+    border-top: 1px solid var(--border);
+  }
+  .span-two {
+    grid-column: span 2;
+  }
+
+  /* Formula */
+  .formula {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    background: var(--light);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent2);
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin: 8px 0;
+    color: var(--blue);
+  }
+
+  .divider { height: 1px; background: var(--border); margin: 10px 0; }
+
+  /* Small info callout */
+  .callout {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-left: 3px solid var(--accent2);
+    border-radius: 4px;
+    padding: 8px 10px;
+    font-size: 11px;
+    color: #1e40af;
+    margin: 8px 0;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <div class="uiu-badge">
+        <span>UIU</span>
+        United International<br>University
+      </div>
+      <div class="title-block">
+        <h1>Dynamic Visual Accessibility Layer for <em>Colour Vision Deficiency</em>:<br>A Personalized Real-Time Screen Colour Correction System</h1>
+        <div class="subtitle" style="margin-top:6px;">Final Year Design Project — Department of Computer Science and Engineering</div>
+      </div>
+    </div>
+    <div class="authors">
+      Gazi Rafat Al Kafi - 011 223 0876 &nbsp;·&nbsp; Ridwanoor Rahman Rafi - 011 223 801 &nbsp;·&nbsp; Sanjida Hossain - 011 223 1039 &nbsp;·&nbsp; Md Zobaer Islam - 011 223 0184 &nbsp;·&nbsp; Mohaiminul Islam - 011 222 030
+    </div>
+    <div class="authors">
+      Supervisor: Dr. Suman Ahmmed (Head and Associate Professor, Dept. of CSE & Director, CDIP) &nbsp;·&nbsp; Co-supervisor: Ms. Sidratul Muntaha (Lecturer, Dept. of CSE)  &nbsp; 
+    </div>
+    <div class="dept">Department of Computer Science and Engineering, United International University, Bangladesh &nbsp;</div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <!-- COL 1: INTRO + METHODOLOGY -->
+    <div class="col">
+      <div class="sec-title"><span class="num">01</span> Introduction</div>
+
+      <p>Colour Vision Deficiency (CVD) affects approximately <strong>300 million people</strong> worldwide. Roughly 8% of men and 0.5% of women impairing their ability to distinguish certain colours and making many digital interfaces inaccessible.</p>
+
+      <div class="stats-row">
+        <div class="stat-box">
+          <span class="stat-num">300M</span>
+          <span class="stat-lbl">People affected</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">8%</span>
+          <span class="stat-lbl">Male prevalence</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">0.5%</span>
+          <span class="stat-lbl">Female prevalence</span>
+        </div>
+      </div>
+
+      <!-- Colour simulation: normal vs CVD -->
+      <p style="font-size:10.5px; font-weight:700; color:var(--navy); margin-bottom:6px;">Colour perception: Normal vision vs. CVD</p>
+      <div class="vision-compare">
+        <div class="vision-box">
+          <div class="vision-label normal">✓ Normal Vision</div>
+          <svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+            <rect x="0" y="0" width="20" height="50" fill="#e63b3b"/>
+            <rect x="20" y="0" width="20" height="50" fill="#e8a020"/>
+            <rect x="40" y="0" width="20" height="50" fill="#3cb94a"/>
+            <rect x="60" y="0" width="20" height="50" fill="#3b82f6"/>
+            <rect x="80" y="0" width="20" height="50" fill="#9333ea"/>
+            <text x="10" y="30" text-anchor="middle" fill="white" font-size="8" font-weight="bold">R</text>
+            <text x="30" y="30" text-anchor="middle" fill="white" font-size="8" font-weight="bold">O</text>
+            <text x="50" y="30" text-anchor="middle" fill="white" font-size="8" font-weight="bold">G</text>
+            <text x="70" y="30" text-anchor="middle" fill="white" font-size="8" font-weight="bold">B</text>
+            <text x="90" y="30" text-anchor="middle" fill="white" font-size="8" font-weight="bold">P</text>
+          </svg>
+        </div>
+        <div class="vision-box">
+          <div class="vision-label cvd">✗ Deuteranomaly</div>
+          <svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+            <rect x="0" y="0" width="20" height="50" fill="#8a7b3a"/>
+            <rect x="20" y="0" width="20" height="50" fill="#b8a430"/>
+            <rect x="40" y="0" width="20" height="50" fill="#c4a828"/>
+            <rect x="60" y="0" width="20" height="50" fill="#3b82f6"/>
+            <rect x="80" y="0" width="20" height="50" fill="#6b7bca"/>
+            <text x="10" y="30" text-anchor="middle" fill="white" font-size="8" font-weight="bold">?</text>
+            <text x="30" y="30" text-anchor="middle" fill="white" font-size="8" font-weight="bold">?</text>
+            <text x="50" y="30" text-anchor="middle" fill="white" font-size="8" font-weight="bold">?</text>
+            <text x="70" y="30" text-anchor="middle" fill="white" font-size="8" font-weight="bold">B</text>
+            <text x="90" y="30" text-anchor="middle" fill="white" font-size="8" font-weight="bold">?</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Ishihara plates -->
+      <p style="font-size:10.5px; font-weight:700; color:var(--navy); margin: 10px 0 6px;">Ishihara Plate Test: Normal vs. CVD perception</p>
+      <div class="ishihara-row">
+        <!-- Plate 1: number 12 visible to normal, not CVD -->
+        <div style="text-align:center;">
+          <svg width="70" height="70" viewBox="0 0 70 70">
+            <circle cx="35" cy="35" r="34" fill="#d4c084"/>
+            <!-- Dots pattern for plate -->
+            <circle cx="20" cy="20" r="5" fill="#c85c2a" opacity="0.9"/>
+            <circle cx="32" cy="18" r="4" fill="#d4703a" opacity="0.85"/>
+            <circle cx="44" cy="22" r="5" fill="#c85c2a" opacity="0.9"/>
+            <circle cx="14" cy="32" r="4" fill="#b84c1c" opacity="0.8"/>
+            <circle cx="26" cy="30" r="6" fill="#c8603a" opacity="0.95"/>
+            <circle cx="38" cy="28" r="5" fill="#d47040" opacity="0.9"/>
+            <circle cx="50" cy="34" r="4" fill="#c85c2a" opacity="0.85"/>
+            <circle cx="20" cy="42" r="5" fill="#b84c1c" opacity="0.8"/>
+            <circle cx="34" cy="44" r="6" fill="#c8603a" opacity="0.95"/>
+            <circle cx="46" cy="40" r="5" fill="#d46830" opacity="0.9"/>
+            <circle cx="12" cy="46" r="3" fill="#9e8040" opacity="0.7"/>
+            <circle cx="56" cy="26" r="3" fill="#a08840" opacity="0.7"/>
+            <circle cx="58" cy="44" r="4" fill="#b8a050" opacity="0.75"/>
+            <circle cx="25" cy="55" r="3" fill="#c09040" opacity="0.7"/>
+            <circle cx="40" cy="56" r="4" fill="#b8903c" opacity="0.75"/>
+            <circle cx="52" cy="52" r="3" fill="#a07830" opacity="0.7"/>
+            <text x="35" y="39" text-anchor="middle" fill="#c85c2a" font-size="16" font-weight="900" opacity="0.6">12</text>
+          </svg>
+          <div style="font-size:9px;color:#16a34a;font-weight:700;margin-top:3px;">Sees: 12</div>
+        </div>
+        <!-- Plate 2: confusion plate -->
+        <div style="text-align:center;">
+          <svg width="70" height="70" viewBox="0 0 70 70">
+            <circle cx="35" cy="35" r="34" fill="#d4c084"/>
+            <circle cx="20" cy="20" r="5" fill="#c85c2a" opacity="0.9"/>
+            <circle cx="32" cy="18" r="4" fill="#d4703a" opacity="0.85"/>
+            <circle cx="44" cy="22" r="5" fill="#c85c2a" opacity="0.9"/>
+            <circle cx="14" cy="32" r="4" fill="#b84c1c" opacity="0.8"/>
+            <circle cx="26" cy="30" r="6" fill="#c8603a" opacity="0.95"/>
+            <circle cx="38" cy="28" r="5" fill="#d47040" opacity="0.9"/>
+            <circle cx="50" cy="34" r="4" fill="#c85c2a" opacity="0.85"/>
+            <circle cx="20" cy="42" r="5" fill="#b84c1c" opacity="0.8"/>
+            <circle cx="34" cy="44" r="6" fill="#c8603a" opacity="0.95"/>
+            <circle cx="46" cy="40" r="5" fill="#d46830" opacity="0.9"/>
+            <circle cx="12" cy="46" r="3" fill="#9e8040" opacity="0.7"/>
+            <circle cx="56" cy="26" r="3" fill="#a08840" opacity="0.7"/>
+            <circle cx="58" cy="44" r="4" fill="#b8a050" opacity="0.75"/>
+            <circle cx="25" cy="55" r="3" fill="#c09040" opacity="0.7"/>
+            <circle cx="40" cy="56" r="4" fill="#b8903c" opacity="0.75"/>
+            <circle cx="52" cy="52" r="3" fill="#a07830" opacity="0.7"/>
+            <text x="35" y="39" text-anchor="middle" fill="#c85c2a" font-size="16" font-weight="900" opacity="0.6">12</text>
+            <!-- blur overlay for CVD -->
+            <circle cx="35" cy="35" r="34" fill="#d4c084" opacity="0.4"/>
+          </svg>
+          <div style="font-size:9px;color:#dc2626;font-weight:700;margin-top:3px;">Sees: ???</div>
+        </div>
+        <!-- Plate 3: after DVAL correction -->
+        <div style="text-align:center;">
+          <svg width="70" height="70" viewBox="0 0 70 70">
+            <circle cx="35" cy="35" r="34" fill="#d4c084"/>
+            <circle cx="20" cy="20" r="5" fill="#e06030" opacity="0.95"/>
+            <circle cx="32" cy="18" r="4" fill="#e87840" opacity="0.9"/>
+            <circle cx="44" cy="22" r="5" fill="#e06030" opacity="0.95"/>
+            <circle cx="14" cy="32" r="4" fill="#d05020" opacity="0.9"/>
+            <circle cx="26" cy="30" r="6" fill="#e06438" opacity="0.98"/>
+            <circle cx="38" cy="28" r="5" fill="#e87844" opacity="0.95"/>
+            <circle cx="50" cy="34" r="4" fill="#e06030" opacity="0.9"/>
+            <circle cx="20" cy="42" r="5" fill="#d05020" opacity="0.9"/>
+            <circle cx="34" cy="44" r="6" fill="#e06438" opacity="0.98"/>
+            <circle cx="46" cy="40" r="5" fill="#e07038" opacity="0.95"/>
+            <circle cx="12" cy="46" r="3" fill="#b09050" opacity="0.8"/>
+            <circle cx="56" cy="26" r="3" fill="#b09050" opacity="0.8"/>
+            <circle cx="58" cy="44" r="4" fill="#c0a858" opacity="0.8"/>
+            <circle cx="25" cy="55" r="3" fill="#c09848" opacity="0.8"/>
+            <circle cx="40" cy="56" r="4" fill="#c09844" opacity="0.8"/>
+            <circle cx="52" cy="52" r="3" fill="#b08438" opacity="0.8"/>
+            <text x="35" y="39" text-anchor="middle" fill="#d04018" font-size="16" font-weight="900" opacity="0.85">12</text>
+          </svg>
+          <div style="font-size:9px;color:#1d4ed8;font-weight:700;margin-top:3px;">DVAL: Sees 12 ✓</div>
+        </div>
+      </div>
+
+      <div class="callout">
+        Existing browser extension apply <strong>static, one-size-fits-all</strong> transforms. Most CVD users have anomalous trichromacy with <strong>varying severity</strong> — a single fixed filter introduces more distortion than benefit.
+      </div>
+
+      <div class="divider"></div>
+      <div class="sec-title"><span class="num">02</span> Methodology</div>
+
+      <div class="method-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Dataset Construction & Model Training</div>
+          <div class="step-desc">CVD image pairs generated using the <strong>Machado–Oliveira–Fernandes</strong> physiological model, parameterized by CVD type and severity δ ∈ [0,1]. Training on MS-COCO + UI screenshots.</div>
+        </div>
+      </div>
+      <div class="formula">c<sub>sim</sub> = M<sub>CVD</sub>(t, δ) · c<sub>orig</sub></div>
+
+      <div class="method-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Online CVD Profiling (No Clinical Diagnosis)</div>
+          <div class="step-desc">Interactive browser-based hue-ordering test (4 rows, 44 movable tiles). Error per row classifies CVD type and estimates severity δ without any specialist hardware.</div>
+        </div>
+      </div>
+
+      <div class="method-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Real-Time Screen Rendering</div>
+          <div class="step-desc">WebGL fragment shader applies per-pixel Daltonization correction across all browser content at ≥60 FPS. Three-stage pipeline: Simulate → Error → Correct.</div>
+        </div>
+      </div>
+
+      <div class="formula">c<sub>corr</sub> = c<sub>orig</sub> + C<sub>type</sub> · (c<sub>orig</sub> − c<sub>sim</sub>)</div>
+    </div>
+
+    <!-- COL 2: DIAGRAMS -->
+    <div class="col">
+      <div class="sec-title"><span class="num">03</span> System Architecture & Diagrams</div>
+
+      <p style="font-size:10.5px; font-weight:700; color:var(--navy); margin-bottom:6px;">Three-Phase System Pipeline</p>
+      <div class="pipeline">
+        <div class="pipe-box accent">Phase 1<br><span style="font-size:8px;font-weight:400;">Offline Training</span></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-box blue">Phase 2<br><span style="font-size:8px;font-weight:400;">User Profiling</span></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-box">Phase 3<br><span style="font-size:8px;font-weight:400;">Screen Layer</span></div>
+      </div>
+
+      <div class="divider"></div>
+      <p style="font-size:10.5px; font-weight:700; color:var(--navy); margin-bottom:8px;">Level-1 Data Flow Diagram</p>
+      <div class="dfd">
+        <div class="dfd-row">
+          <div class="dfd-node user">CVD User</div>
+        </div>
+        <div class="dfd-row">
+          <div class="dfd-arrow">↓ hue responses</div>
+        </div>
+        <div class="dfd-row">
+          <div class="dfd-node process">Assessment Engine</div>
+          <div class="dfd-arrow">→</div>
+          <div class="dfd-node process">Profile Estimator</div>
+        </div>
+        <div class="dfd-row">
+          <div class="dfd-arrow" style="margin-left:80px;">↓ CVD type, δ</div>
+        </div>
+        <div class="dfd-row">
+          <div class="dfd-node store">User Profile<br>Storage</div>
+          <div class="dfd-arrow">→</div>
+          <div class="dfd-node process">Correction Model<br><span style="font-size:8px;">M_CVD(t,δ) + C_type</span></div>
+        </div>
+        <div class="dfd-row">
+          <div class="dfd-arrow" style="margin-left:80px;">↓ corrected pixels</div>
+        </div>
+        <div class="dfd-row">
+          <div class="dfd-node process">Screen Renderer<br><span style="font-size:8px;">WebGL Shader</span></div>
+          <div class="dfd-arrow">→</div>
+          <div class="dfd-node output">Browser Display</div>
+        </div>
+        <div style="display:flex; gap:6px; margin-top:8px; justify-content:center; align-items:center;">
+          <div class="dfd-node process" style="font-size:8.5px; padding:4px 8px;">Pretrained<br>Machado Model</div>
+          <div class="dfd-arrow">↗</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <p style="font-size:10.5px; font-weight:700; color:var(--navy); margin-bottom:6px;">Browser Extension Architecture</p>
+      <div style="background:var(--light); border:1px solid var(--border); border-radius:8px; padding:12px; margin-bottom:10px;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:6px;">
+          <div style="background:var(--navy); color:var(--white); padding:7px; border-radius:5px; font-size:9.5px; font-weight:600; text-align:center;">Background<br>Service Worker<br><span style="font-size:8px;color:var(--accent);">profile storage</span></div>
+          <div style="background:var(--accent2); color:var(--white); padding:7px; border-radius:5px; font-size:9.5px; font-weight:600; text-align:center;">Content Script<br>WebGL Pipeline<br><span style="font-size:8px;opacity:0.85;">per-pixel correction</span></div>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+          <div style="background:#7c3aed; color:var(--white); padding:7px; border-radius:5px; font-size:9.5px; font-weight:600; text-align:center;">Popup UI<br><span style="font-size:8px;opacity:0.85;">toggle · slider · mode</span></div>
+          <div style="background:var(--accent); color:var(--navy); padding:7px; border-radius:5px; font-size:9.5px; font-weight:600; text-align:center;">Assessment Page<br><span style="font-size:8px;">hue-ordering test</span></div>
+        </div>
+        <div style="text-align:center; margin-top:8px; font-size:9px; color:var(--gray);">Chrome Manifest V3 WebExtensions API · All local · No external server</div>
+      </div>
+
+      <div class="divider"></div>
+      <p style="font-size:10.5px; font-weight:700; color:var(--navy); margin-bottom:6px;">CVD Classification (Hue Ordering Errors)</p>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; margin-bottom:8px;">
+        <div style="background:#fef2f2; border:1px solid #fca5a5; border-radius:5px; padding:8px; text-align:center;">
+          <div style="font-size:9px; font-weight:700; color:#b91c1c; text-transform:uppercase; margin-bottom:4px;">Protan</div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:#334155;">E<sub>r1</sub> + E<sub>r4</sub></div>
+        </div>
+        <div style="background:#fefce8; border:1px solid #fde047; border-radius:5px; padding:8px; text-align:center;">
+          <div style="font-size:9px; font-weight:700; color:#854d0e; text-transform:uppercase; margin-bottom:4px;">Deutan</div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:#334155;">E<sub>r1</sub> + E<sub>r2</sub></div>
+        </div>
+        <div style="background:#eff6ff; border:1px solid #93c5fd; border-radius:5px; padding:8px; text-align:center;">
+          <div style="font-size:9px; font-weight:700; color:#1e40af; text-transform:uppercase; margin-bottom:4px;">Tritan</div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:#334155;">E<sub>r3</sub> + E<sub>r4</sub></div>
+        </div>
+      </div>
+      <div class="formula">CVD Type = argmax { E<sub>protan</sub>, E<sub>deutan</sub>, E<sub>tritan</sub> }</div>
+
+      <div class="divider"></div>
+      <p style="font-size:10.5px; font-weight:700; color:var(--navy); margin-bottom:6px;">GLSL Pixel Shader (Real-Time Correction)</p>
+      <div style="background:#0f1b2d; border-radius:6px; padding:10px 12px; font-family:'JetBrains Mono',monospace; font-size:9.5px; line-height:1.7; color:#94d1ff;">
+        <span style="color:#64748b;">// WebGL fragment shader</span><br>
+        <span style="color:#fbbf24;">vec3</span> c_orig = texture2D(uScreen, vTC).rgb;<br>
+        <span style="color:#fbbf24;">vec3</span> c_sim = uSimMatrix * c_orig;<br>
+        <span style="color:#fbbf24;">vec3</span> err = c_orig - c_sim;<br>
+        <span style="color:#fbbf24;">vec3</span> c_corr = c_orig + uCorrMatrix * err;<br>
+        gl_FragColor = vec4(<span style="color:#86efac;">clamp</span>(c_corr, 0.0, 1.0), 1.0);
+      </div>
+    </div>
+
+    <!-- COL 3: GAP ANALYSIS + CONCLUSION -->
+    <div class="col">
+      <div class="sec-title"><span class="num">04</span> Gap Analysis</div>
+
+      <table class="gap-table">
+        <thead>
+          <tr>
+            <th>Gap / Feature</th>
+            <th>Best Prior Work</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Fixed daltonization for dichromacy</strong></td>
+            <td>Brettel [8]; Machado [7]</td>
+            <td><span class="badge closed">Closed</span> — used as baseline</td>
+          </tr>
+          <tr>
+            <td><strong>DL recolouring of static images</strong></td>
+            <td>Chen et al. [13]; CVD-GAN [14]</td>
+            <td><span class="badge closed">Closed</span> — quality baseline</td>
+          </tr>
+          <tr>
+            <td><strong>Degree-adaptive correction (δ) for anomalous trichromacy</strong></td>
+            <td>Zhu et al. [5] — ~30s/image</td>
+            <td><span class="badge partial">Partial</span> — extended to real-time</td>
+          </tr>
+          <tr>
+            <td><strong>Real-time personalized correction without AR headset</strong></td>
+            <td>Hue4U [2] — Meta Quest 3 required</td>
+            <td><span class="badge primary">Primary</span> contribution</td>
+          </tr>
+          <tr>
+            <td><strong>End-to-end pipeline: profiling → model → screen overlay</strong></td>
+            <td>No existing unified system [4]</td>
+            <td><span class="badge open">Open</span> → <span class="badge primary">Primary</span></td>
+          </tr>
+          <tr>
+            <td><strong>In-browser profile refinement (no clinical diagnosis)</strong></td>
+            <td>No tool supports this [3]</td>
+            <td><span class="badge open">Open</span> → secondary contribution</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <strong>Core novelty:</strong> No existing system integrates automated severity profiling with a learned colour transformation deployed as a <strong>cross-application screen accessibility layer</strong> — no specialist hardware, no clinical diagnosis required.
+      </div>
+
+      <div class="divider"></div>
+      <div class="sec-title"><span class="num">05</span> Expected Results</div>
+
+      <p>Evaluation against fixed-filter daltonization baselines using <strong>CIEDE2000 (ΔE)</strong> colour-difference metrics and an Ishihara plate recognition study (pre/post correction).</p>
+
+      <div style="margin:10px 0;">
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th>System</th>
+              <th>Approach</th>
+              <th>Personalized</th>
+              <th>Real-Time</th>
+              <th>No HW</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>OS Filters</td>
+              <td>Static filter</td>
+              <td>✗</td>
+              <td>✓</td>
+              <td>✓</td>
+            </tr>
+            <tr>
+              <td>Dalton Ext.</td>
+              <td>Fixed recolor</td>
+              <td>✗</td>
+              <td>✓</td>
+              <td>✓</td>
+            </tr>
+            <tr>
+              <td>Zhu et al. [5]</td>
+              <td>Optimization</td>
+              <td>✓</td>
+              <td>✗</td>
+              <td>✓</td>
+            </tr>
+            <tr>
+              <td>Hue4U [2]</td>
+              <td>AR+Machado</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✗</td>
+            </tr>
+            <tr class="highlight">
+              <td><strong>DVAL (Ours)</strong></td>
+              <td>Browser+Shader</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-box">
+          <span class="stat-num">≥30</span>
+          <span class="stat-lbl">FPS target</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">&lt;2 min</span>
+          <span class="stat-lbl">Profiling time</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="sec-title"><span class="num">06</span> Conclusion</div>
+
+      <ul class="conclusion-points">
+        <li>DVAL is the first end-to-end personalised, real-time CVD colour correction system deployable as a <strong>cross-application browser layer</strong> — no AR headset, no clinical diagnosis.</li>
+        <li>The system combines a <strong>severity-conditioned Daltonization model</strong> (Machado matrices) with an in-browser hue-ordering profiler to automatically estimate CVD type and severity δ.</li>
+        <li>A WebGL pixel shader applies correction across all browser content at <strong>≥60 FPS</strong>, using only two matrix multiplications per pixel.</li>
+        <li>Addresses the critical gap identified in Geddes et al. [4]: fewer than 15% of CVD tools offered any form of personalization or degree-adaptive correction.</li>
+        <li><strong>Future work:</strong> Extend beyond browser to OS-level screen capture; support feedback-based profile refinement; validate on wider, clinically diagnosed CVD population.</li>
+      </ul>
+
+      <div class="highlight-box">
+        <p><strong style="color:var(--accent);">Key Contribution:</strong> A software-only, privacy-preserving, personalized CVD accessibility layer that works on any web content — making digital interfaces equitable for the 300M+ people worldwide living with colour vision deficiency.</p>
+      </div>
+    </div>
+
+  </div><!-- end body grid -->
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">
+      Department of CSE · United International University · Bangladesh<br>Final Year Design Project · Team: 261-021
+    </div>
+    <div class="footer-mid">
+      DVAL · Dynamic Visual Accessibility Layer<br>
+      <span style="color:var(--accent);">https://github.com/gra-kafi/DVAL</span>
+    </div>
+    <div class="footer-keywords">
+      <span class="keyword">Colour Vision Deficiency</span>
+      <span class="keyword">Browser Extension</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
